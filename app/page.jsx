@@ -307,7 +307,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="min-h-screen bg-[#080d18] text-white">
+    <div className="min-h-screen bg-gradient-to-br from-[#170000] via-[#0b0202] to-[#260000] text-white">
       <main className="p-5 md:p-10">
         <div className="flex flex-wrap justify-between gap-4 mb-8">
           <div>
@@ -315,7 +315,11 @@ export default function Dashboard() {
               Balance Empresarial
             </h1>
 
-            <p className="text-slate-400 mt-2">
+            <p className="text-slate-300 mt-2">
+              Actualizado {updated}
+            </p>
+
+            <p className="text-red-400 mt-1">
               Sistema Inteligente de Análisis Financiero
             </p>
           </div>
@@ -323,7 +327,7 @@ export default function Dashboard() {
           <div className="flex gap-3">
             <button
               onClick={loadData}
-              className="bg-blue-600 hover:bg-blue-500 px-5 py-3 rounded-2xl flex items-center gap-2 font-bold"
+              className="bg-red-700 hover:bg-red-600 px-5 py-3 rounded-2xl flex items-center gap-2 font-bold transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-red-600/40"
             >
               <RefreshCcw size={18} />
               Actualizar
@@ -359,7 +363,7 @@ export default function Dashboard() {
           />
         </div>
 
-        <div className="bg-[#111827] rounded-3xl p-5 mb-8">
+        <div className="bg-gradient-to-br from-[#2a0505] to-[#120202] border border-red-500/20 rounded-3xl p-5 mb-8 transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:shadow-red-600/20">
           <div className="grid md:grid-cols-2 gap-4">
             <input
               value={query}
@@ -367,7 +371,7 @@ export default function Dashboard() {
                 setQuery(e.target.value)
               }
               placeholder="Buscar..."
-              className="bg-[#1f2937] rounded-2xl px-4 py-3 outline-none"
+              className="bg-[#160303] border border-red-500/20 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-red-500 transition"
             />
 
             <select
@@ -375,7 +379,7 @@ export default function Dashboard() {
               onChange={(e) =>
                 setMonth(e.target.value)
               }
-              className="bg-[#1f2937] rounded-2xl px-4 py-3 outline-none"
+              className="bg-[#160303] border border-red-500/20 rounded-2xl px-4 py-3 outline-none focus:ring-2 focus:ring-red-500 transition"
             >
               <option>TODOS</option>
 
@@ -395,26 +399,28 @@ export default function Dashboard() {
               <BarChart data={monthly}>
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="#1e293b"
+                  stroke="#3f0d0d"
                 />
 
                 <XAxis
                   dataKey="mes"
-                  stroke="#94a3b8"
+                  stroke="#fca5a5"
                 />
 
-                <YAxis stroke="#94a3b8" />
+                <YAxis stroke="#fca5a5" />
 
                 <Tooltip />
 
                 <Bar
                   dataKey="ingresos"
                   fill="#22c55e"
+                  radius={[8, 8, 0, 0]}
                 />
 
                 <Bar
                   dataKey="egresos"
                   fill="#ef4444"
+                  radius={[8, 8, 0, 0]}
                 />
               </BarChart>
             </ResponsiveContainer>
@@ -428,21 +434,21 @@ export default function Dashboard() {
               <LineChart data={monthly}>
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="#1e293b"
+                  stroke="#3f0d0d"
                 />
 
                 <XAxis
                   dataKey="mes"
-                  stroke="#94a3b8"
+                  stroke="#fca5a5"
                 />
 
-                <YAxis stroke="#94a3b8" />
+                <YAxis stroke="#fca5a5" />
 
                 <Tooltip />
 
                 <Line
                   dataKey="balance"
-                  stroke="#3b82f6"
+                  stroke="#f87171"
                   strokeWidth={4}
                 />
               </LineChart>
@@ -465,12 +471,12 @@ export default function Dashboard() {
                     <Cell
                       key={i}
                       fill={[
-                        "#3b82f6",
-                        "#22c55e",
-                        "#f59e0b",
+                        "#dc2626",
                         "#ef4444",
-                        "#8b5cf6",
-                        "#06b6d4",
+                        "#f87171",
+                        "#991b1b",
+                        "#7f1d1d",
+                        "#450a0a",
                       ][i]}
                     />
                   ))}
@@ -489,29 +495,29 @@ export default function Dashboard() {
               <AreaChart data={monthly}>
                 <CartesianGrid
                   strokeDasharray="3 3"
-                  stroke="#1e293b"
+                  stroke="#3f0d0d"
                 />
 
                 <XAxis
                   dataKey="mes"
-                  stroke="#94a3b8"
+                  stroke="#fca5a5"
                 />
 
-                <YAxis stroke="#94a3b8" />
+                <YAxis stroke="#fca5a5" />
 
                 <Tooltip />
 
                 <Area
                   dataKey="ingresos"
-                  stroke="#22c55e"
-                  fill="#22c55e33"
+                  stroke="#ef4444"
+                  fill="#ef444433"
                 />
               </AreaChart>
             </ResponsiveContainer>
           </ChartBox>
         </div>
 
-        <div className="bg-[#111827] rounded-3xl p-6">
+        <div className="bg-gradient-to-br from-[#2a0505] to-[#120202] border border-red-500/20 rounded-3xl p-6 transition-all duration-300 hover:scale-[1.01] hover:shadow-2xl hover:shadow-red-600/30">
           <div className="flex flex-wrap justify-between gap-4 mb-5">
             <h2 className="text-3xl font-black">
               Transacciones
@@ -520,7 +526,7 @@ export default function Dashboard() {
             <div className="flex gap-2">
               <button
                 onClick={exportCSV}
-                className="bg-blue-600 px-4 py-2 rounded-xl flex gap-2"
+                className="bg-red-700 hover:bg-red-600 px-4 py-2 rounded-xl flex gap-2 transition-all duration-300 hover:scale-105"
               >
                 <Download size={18} />
                 CSV
@@ -528,7 +534,7 @@ export default function Dashboard() {
 
               <button
                 onClick={exportJSON}
-                className="bg-purple-600 px-4 py-2 rounded-xl flex gap-2"
+                className="bg-red-900 hover:bg-red-800 px-4 py-2 rounded-xl flex gap-2 transition-all duration-300 hover:scale-105"
               >
                 <FileJson size={18} />
                 JSON
@@ -536,7 +542,7 @@ export default function Dashboard() {
 
               <button
                 onClick={() => window.print()}
-                className="bg-slate-700 px-4 py-2 rounded-xl flex gap-2"
+                className="bg-[#3f0d0d] hover:bg-[#5b1111] px-4 py-2 rounded-xl flex gap-2 transition-all duration-300 hover:scale-105"
               >
                 <Printer size={18} />
                 PDF
@@ -547,7 +553,7 @@ export default function Dashboard() {
           <div className="overflow-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b border-white/10 text-slate-400">
+                <tr className="border-b border-red-500/20 text-red-200">
                   <th className="py-3 text-left">
                     Nro
                   </th>
@@ -584,7 +590,7 @@ export default function Dashboard() {
                   .map((r) => (
                     <tr
                       key={r.id}
-                      className="border-b border-white/5"
+                      className="border-b border-red-500/10 hover:bg-red-900/10 transition"
                     >
                       <td className="py-3">
                         {r.nro}
@@ -597,8 +603,8 @@ export default function Dashboard() {
                       <td
                         className={
                           r.tipo === "INGRESO"
-                            ? "text-green-400"
-                            : "text-red-400"
+                            ? "text-green-400 font-bold"
+                            : "text-red-400 font-bold"
                         }
                       >
                         {r.tipo}
@@ -621,7 +627,7 @@ export default function Dashboard() {
 
       {loading && (
         <div className="fixed inset-0 bg-black/70 flex items-center justify-center">
-          <div className="h-16 w-16 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <div className="h-16 w-16 border-4 border-red-500 border-t-transparent rounded-full animate-spin"></div>
         </div>
       )}
     </div>
@@ -636,10 +642,10 @@ function Card({
   red,
 }) {
   return (
-    <div className="bg-[#111827] rounded-3xl p-6">
+    <div className="bg-gradient-to-br from-[#2a0505] to-[#120202] border border-red-500/20 rounded-3xl p-6 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl hover:shadow-red-600/30">
       <div className="flex justify-between">
         <div>
-          <p className="text-slate-400">
+          <p className="text-red-200">
             {title}
           </p>
 
@@ -649,14 +655,14 @@ function Card({
                 ? "text-green-400"
                 : red
                 ? "text-red-400"
-                : ""
+                : "text-white"
             }`}
           >
             {value}
           </h3>
         </div>
 
-        <div className="bg-white/10 p-3 rounded-2xl">
+        <div className="bg-red-900/30 p-3 rounded-2xl">
           {icon}
         </div>
       </div>
@@ -666,7 +672,7 @@ function Card({
 
 function ChartBox({ title, children }) {
   return (
-    <div className="bg-[#111827] rounded-3xl p-6">
+    <div className="bg-gradient-to-br from-[#2a0505] to-[#120202] border border-red-500/20 rounded-3xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-red-600/20">
       <h3 className="text-2xl font-black mb-5">
         {title}
       </h3>
